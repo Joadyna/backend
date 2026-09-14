@@ -1,0 +1,729 @@
+EXERCICIO 1:
+
+#include <stdio.h>
+
+int main() {
+
+    int numeros[10];
+
+    for (int i = 0; i < 10; i++) {
+        printf("Digite o %d numero: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
+
+    printf("\nOrdem digitada:\n");
+
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", numeros[i]);
+    }
+
+    printf("\n\nOrdem inversa:\n");
+
+    for (int i = 9; i >= 0; i--) {
+        printf("%d ", numeros[i]);
+    }
+
+    return 0;
+}
+
+EXERCICIO 2:
+
+#include <stdio.h>
+
+int main() {
+
+    int numeros[20];
+    int maior, menor;
+    int pares = 0;
+    int impares = 0;
+    int soma = 0;
+    float media;
+
+    for (int i = 0; i < 20; i++) {
+
+        printf("Digite o %d numero: ", i + 1);
+        scanf("%d", &numeros[i]);
+
+        soma += numeros[i];
+
+        if (i == 0) {
+            maior = numeros[i];
+            menor = numeros[i];
+        }
+
+        if (numeros[i] > maior) {
+            maior = numeros[i];
+        }
+
+        if (numeros[i] < menor) {
+            menor = numeros[i];
+        }
+
+        if (numeros[i] % 2 == 0) {
+            pares++;
+        } else {
+            impares++;
+        }
+    }
+
+    media = soma / 20.0;
+
+    printf("\nMaior valor: %d", maior);
+    printf("\nMenor valor: %d", menor);
+    printf("\nMedia: %.2f", media);
+    printf("\nQuantidade de pares: %d", pares);
+    printf("\nQuantidade de impares: %d\n", impares);
+
+    return 0;
+}
+
+EXERCICIO 3:
+
+#include <stdio.h>
+
+int main() {
+
+    int numeros[15];
+    int pesquisa;
+    int encontrado = 0;
+
+    for (int i = 0; i < 15; i++) {
+        printf("Digite o %d numero: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
+
+    printf("\nDigite um numero para pesquisar: ");
+    scanf("%d", &pesquisa);
+
+    for (int i = 0; i < 15; i++) {
+
+        if (numeros[i] == pesquisa) {
+
+            printf("Numero encontrado na posicao %d do vetor.\n", i);
+            encontrado = 1;
+        }
+    }
+
+    if (encontrado == 0) {
+        printf("Numero nao encontrado.\n");
+    }
+
+    return 0;
+}
+
+EXERCICIO 4:
+
+#include <stdio.h>
+
+int main() {
+
+    int matrizA[3][3];
+    int matrizB[3][3];
+    int matrizC[3][3];
+
+    printf("MATRIZ A\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            printf("Digite [%d][%d]: ", i, j);
+            scanf("%d", &matrizA[i][j]);
+        }
+    }
+
+    printf("\nMATRIZ B\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            printf("Digite [%d][%d]: ", i, j);
+            scanf("%d", &matrizB[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            matrizC[i][j] = matrizA[i][j] + matrizB[i][j];
+        }
+    }
+
+    printf("\nMatriz A:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizA[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\nMatriz B:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizB[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\nMatriz Soma:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizC[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+EXERCICIO 5:
+
+#include <stdio.h>
+
+int main() {
+
+    int matrizA[3][3];
+    int matrizB[3][3];
+    int matrizC[3][3];
+
+    printf("MATRIZ A\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            printf("Digite [%d][%d]: ", i, j);
+            scanf("%d", &matrizA[i][j]);
+        }
+    }
+
+    printf("\nMATRIZ B\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            printf("Digite [%d][%d]: ", i, j);
+            scanf("%d", &matrizB[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            matrizC[i][j] = matrizA[i][j] + matrizB[i][j];
+        }
+    }
+
+    printf("\nMatriz A:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizA[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\nMatriz B:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizB[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\nMatriz Soma:\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matrizC[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+EXERCICIO 6:
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+
+    char nome[100];
+
+    int vogais = 0;
+    int consoantes = 0;
+    int espacos = 0;
+
+    printf("Digite seu nome completo: ");
+    fgets(nome, 100, stdin);
+
+    nome[strcspn(nome, "\n")] = '\0';
+
+    int tamanho = strlen(nome);
+
+    for (int i = 0; i < tamanho; i++) {
+
+        char letra = tolower(nome[i]);
+
+        if (letra == ' ') {
+
+            espacos++;
+
+        } else if (isalpha(letra)) {
+
+            if (
+                letra == 'a' ||
+                letra == 'e' ||
+                letra == 'i' ||
+                letra == 'o' ||
+                letra == 'u'
+            ) {
+
+                vogais++;
+
+            } else {
+
+                consoantes++;
+            }
+        }
+    }
+
+    printf("\nQuantidade de caracteres: %d\n", tamanho);
+    printf("Quantidade de vogais: %d\n", vogais);
+    printf("Quantidade de consoantes: %d\n", consoantes);
+    printf("Quantidade de espacos: %d\n", espacos);
+
+    return 0;
+}
+
+EXERCICIO 7:
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+    char nome1[100];
+    char nome2[100];
+
+    printf("Digite o primeiro nome: ");
+    fgets(nome1, 100, stdin);
+
+    printf("Digite o segundo nome: ");
+    fgets(nome2, 100, stdin);
+
+    nome1[strcspn(nome1, "\n")] = '\0';
+    nome2[strcspn(nome2, "\n")] = '\0';
+
+    int resultado = strncmp(nome1, nome2, 100);
+
+    if (resultado == 0) {
+
+        printf("Os nomes sao iguais.\n");
+
+    } else if (resultado > 0) {
+
+        printf("Os nomes sao diferentes.\n");
+        printf("%s e alfabeticamente maior.\n", nome1);
+
+    } else {
+
+        printf("Os nomes sao diferentes.\n");
+        printf("%s e alfabeticamente maior.\n", nome2);
+    }
+
+    return 0;
+}
+
+EXERCICIO 8:
+
+#include <stdio.h>
+
+int maior(int a, int b) {
+
+    if (a > b) {
+        return a;
+    }
+
+    return b;
+}
+
+int menor(int a, int b) {
+
+    if (a < b) {
+        return a;
+    }
+
+    return b;
+}
+
+float media(float a, float b) {
+
+    return (a + b) / 2;
+}
+
+int fatorial(int n) {
+
+    int resultado = 1;
+
+    for (int i = 1; i <= n; i++) {
+        resultado *= i;
+    }
+
+    return resultado;
+}
+
+int main() {
+
+    int numero1;
+    int numero2;
+    int numeroFatorial;
+
+    printf("Digite o primeiro numero: ");
+    scanf("%d", &numero1);
+
+    printf("Digite o segundo numero: ");
+    scanf("%d", &numero2);
+
+    printf("\nMaior: %d\n", maior(numero1, numero2));
+    printf("Menor: %d\n", menor(numero1, numero2));
+    printf("Media: %.2f\n", media(numero1, numero2));
+
+    printf("\nDigite um numero para calcular o fatorial: ");
+    scanf("%d", &numeroFatorial);
+
+    printf("Fatorial: %d\n", fatorial(numeroFatorial));
+
+    return 0;
+}
+
+EXERCICIO 9:
+
+#include <stdio.h>
+
+#define MAX_ALUNOS 50
+
+void lerNotas(float notas[], int quantidade);
+float calcularMedia(float notas[], int quantidade);
+float encontrarMaiorNota(float notas[], int quantidade);
+float encontrarMenorNota(float notas[], int quantidade);
+void imprimirRelatorio(
+    float notas[],
+    int quantidade,
+    float media,
+    float maior,
+    float menor
+);
+
+void lerNotas(float notas[], int quantidade) {
+
+    for (int i = 0; i < quantidade; i++) {
+
+        printf("Digite a nota do aluno %d: ", i + 1);
+        scanf("%f", &notas[i]);
+    }
+}
+
+float calcularMedia(float notas[], int quantidade) {
+
+    float soma = 0;
+
+    for (int i = 0; i < quantidade; i++) {
+        soma += notas[i];
+    }
+
+    return soma / quantidade;
+}
+
+float encontrarMaiorNota(float notas[], int quantidade) {
+
+    float maior = notas[0];
+
+    for (int i = 1; i < quantidade; i++) {
+
+        if (notas[i] > maior) {
+            maior = notas[i];
+        }
+    }
+
+    return maior;
+}
+
+float encontrarMenorNota(float notas[], int quantidade) {
+
+    float menor = notas[0];
+
+    for (int i = 1; i < quantidade; i++) {
+
+        if (notas[i] < menor) {
+            menor = notas[i];
+        }
+    }
+
+    return menor;
+}
+
+void imprimirRelatorio(
+    float notas[],
+    int quantidade,
+    float media,
+    float maior,
+    float menor
+) {
+
+    printf("\n----- RELATORIO -----\n");
+
+    for (int i = 0; i < quantidade; i++) {
+
+        printf("Aluno %d: %.2f\n", i + 1, notas[i]);
+    }
+
+    printf("\nMedia da turma: %.2f\n", media);
+    printf("Maior nota: %.2f\n", maior);
+    printf("Menor nota: %.2f\n", menor);
+}
+
+int main() {
+
+    float notas[MAX_ALUNOS];
+    int quantidade;
+
+    printf("Quantidade de alunos: ");
+    scanf("%d", &quantidade);
+
+    if (quantidade <= 0 || quantidade > MAX_ALUNOS) {
+
+        printf("Quantidade invalida.\n");
+        return 1;
+    }
+
+    lerNotas(notas, quantidade);
+
+    float media = calcularMedia(notas, quantidade);
+    float maior = encontrarMaiorNota(notas, quantidade);
+    float menor = encontrarMenorNota(notas, quantidade);
+
+    imprimirRelatorio(
+        notas,
+        quantidade,
+        media,
+        maior,
+        menor
+    );
+
+    return 0;
+}
+
+EXERCICIO 10:
+
+#include <stdio.h>
+
+void inicializarTabuleiro(char tabuleiro[3][3]);
+void mostrarTabuleiro(char tabuleiro[3][3]);
+int realizarJogada(char tabuleiro[3][3], int linha, int coluna, char jogador);
+int verificarVitoria(char tabuleiro[3][3], char jogador);
+int verificarEmpate(char tabuleiro[3][3]);
+
+void inicializarTabuleiro(char tabuleiro[3][3]) {
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            tabuleiro[i][j] = ' ';
+        }
+    }
+}
+
+void mostrarTabuleiro(char tabuleiro[3][3]) {
+
+    printf("\n");
+
+    for (int i = 0; i < 3; i++) {
+
+        printf(" %c | %c | %c \n",
+               tabuleiro[i][0],
+               tabuleiro[i][1],
+               tabuleiro[i][2]);
+
+        if (i < 2) {
+            printf("---+---+---\n");
+        }
+    }
+
+    printf("\n");
+}
+
+int realizarJogada(
+    char tabuleiro[3][3],
+    int linha,
+    int coluna,
+    char jogador
+) {
+
+    if (linha < 0 || linha > 2 ||
+        coluna < 0 || coluna > 2) {
+
+        return 0;
+    }
+
+    if (tabuleiro[linha][coluna] != ' ') {
+
+        return 0;
+    }
+
+    tabuleiro[linha][coluna] = jogador;
+
+    return 1;
+}
+
+int verificarVitoria(char tabuleiro[3][3], char jogador) {
+
+    for (int i = 0; i < 3; i++) {
+
+        if (
+            tabuleiro[i][0] == jogador &&
+            tabuleiro[i][1] == jogador &&
+            tabuleiro[i][2] == jogador
+        ) {
+
+            return 1;
+        }
+    }
+
+    for (int j = 0; j < 3; j++) {
+
+        if (
+            tabuleiro[0][j] == jogador &&
+            tabuleiro[1][j] == jogador &&
+            tabuleiro[2][j] == jogador
+        ) {
+
+            return 1;
+        }
+    }
+
+    if (
+        tabuleiro[0][0] == jogador &&
+        tabuleiro[1][1] == jogador &&
+        tabuleiro[2][2] == jogador
+    ) {
+
+        return 1;
+    }
+
+    if (
+        tabuleiro[0][2] == jogador &&
+        tabuleiro[1][1] == jogador &&
+        tabuleiro[2][0] == jogador
+    ) {
+
+        return 1;
+    }
+
+    return 0;
+}
+
+int verificarEmpate(char tabuleiro[3][3]) {
+
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 3; j++) {
+
+            if (tabuleiro[i][j] == ' ') {
+
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
+int main() {
+
+    char tabuleiro[3][3];
+
+    char jogador = 'X';
+
+    int linha;
+    int coluna;
+
+    inicializarTabuleiro(tabuleiro);
+
+    while (1) {
+
+        mostrarTabuleiro(tabuleiro);
+
+        printf("Jogador %c\n", jogador);
+
+        printf("Digite a linha (1 a 3): ");
+        scanf("%d", &linha);
+
+        printf("Digite a coluna (1 a 3): ");
+        scanf("%d", &coluna);
+
+        linha--;
+        coluna--;
+
+        if (!realizarJogada(
+            tabuleiro,
+            linha,
+            coluna,
+            jogador
+        )) {
+
+            printf("\nJogada invalida!\n");
+            continue;
+        }
+
+        if (verificarVitoria(tabuleiro, jogador)) {
+
+            mostrarTabuleiro(tabuleiro);
+
+            printf("Jogador %c venceu!\n", jogador);
+
+            break;
+        }
+
+        if (verificarEmpate(tabuleiro)) {
+
+            mostrarTabuleiro(tabuleiro);
+
+            printf("O jogo terminou empatado!\n");
+
+            break;
+        }
+
+        if (jogador == 'X') {
+            jogador = 'O';
+        } else {
+            jogador = 'X';
+        }
+    }
+
+    return 0;
+}
