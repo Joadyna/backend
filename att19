@@ -1,0 +1,177 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAM 5
+
+
+typedef enum {
+    COLUNA_B = 0,
+    COLUNA_I,
+    COLUNA_N,
+    COLUNA_G,
+    COLUNA_O
+} ColunaBingo;
+
+
+typedef struct {
+    int numeros[TAM][TAM];
+} Cartela;
+
+
+int gerarNumero(int minimo, int maximo);
+int numeroExiste(int cartela[TAM][TAM], int coluna, int numero);
+void ordenarColuna(int cartela[TAM][TAM], int coluna);
+void gerarCartela(Cartela *c);
+int cartelasSaoIdenticas(Cartela *c1, Cartela *c2);
+void imprimirCartela(Cartela c, int numeroCartela);
+
+int main() {
+    int qtdCartelas;
+
+    
+    srand((unsigned int)time(NULL));
+
+    printf("=== GERADOR DE CARTELAS DE BINGO ===\n\n");
+
+   
+    printf("Digite a quantidade de cartelas que deseja gerar: ");
+    if (scanf("%d", &qtdCartelas) != 1 || qtdCartelas <= 0) {
+        printf("Quantidade inválida!\n");
+        return 1;
+    }
+
+   
+    Cartela *cartelas = (Cartela *)malloc(qtdCartelas * sizeof(Cartela));
+    if (cartelas == NULL) {
+        printf("Erro ao alocar memória!\n");
+        return 1;
+    }
+
+  
+    for (int i = 0; i < qtdCartelas; i++) {
+        int eDuplicada;
+        do {
+            eDuplicada = 0;
+            gerarCartela(&cartelas[i]);
+
+          
+            for (int j = 0; j < i; j++) {
+                if (cartelasSaoIdenticas(&cartelas[i], &cartelas[j])) {
+                    eDuplicada = 1;
+                    break;
+                }
+            }
+        } while (eDuplicada);
+    }
+
+   
+    for (int i = 0; i < qtdCartelas; i++) {
+        imprimirCartela(cartelas[i], i + 1);
+    }
+
+    free(cartelas);
+    return 0;
+}
+
+
+int gerarNumero(int minimo, int maximo) {
+    return minimo + rand() % (maximo - minimo + 1);
+}
+
+
+int numeroExiste(int cartela[TAM][TAM], int coluna, int numero) {
+    for (int i = 0; i < TAM; i++) {
+        if (cartela[i][coluna] == numero) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+void ordenarColuna(int cartela[TAM][TAM], int coluna) {
+    for (int i = 0; i < TAM - 1; i++) {
+        for (int j = 0; j < TAM - i - 1; j++) {
+            // Se for o centro (0), não troca
+            if (cartela[j][coluna] == 0) continue;
+            
+            int proximoIdx = (j + 1 == 2 && coluna == COLUNA_N) ? j + 2 : j + 1;
+            if (proximoIdx >= TAM) continue;
+
+            if (cartela[j][coluna] > cartela[proximoIdx][coluna]) {
+                int temp = cartela[j][coluna];
+                cartela[j][coluna] = cartela[proximoIdx][coluna];
+                cartela[proximoIdx][coluna] = temp;
+            }
+        }
+    }
+}
+
+
+void gerarCartela(Cartela *c) {
+ 
+    int faixas[5][2] = {
+        {1, 15},   // B - COLUNA_B
+        {16, 30},  // I - COLUNA_I
+        {31, 45},  // N - COLUNA_N
+        {46, 60},  // G - COLUNA_G
+        {61, 75}   // O - COLUNA_O
+    };
+
+    for (int col = COLUNA_B; col <= COLUNA_O; col++) {
+        int min = faixas[col][0];
+        int max = faixas[col][1];
+
+        for (int lin = 0; lin < TAM; lin++) {
+            
+            if (lin == 2 && col == COLUNA_N) {
+                c->numeros[lin][col] = 0;
+                continue;
+            }
+
+            int num;
+            do {
+                num = gerarNumero(min, max);
+            } while (numeroExiste(c->numeros, col, num));
+
+            c->numeros[lin][col] = num;
+        }
+
+      
+        ordenarColuna(c->numeros, col);
+    }
+}
+
+
+int cartelasSaoIdenticas(Cartela *c1, Cartela *c2) {
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            if (c1->numeros[i][j] != c2->numeros[i][j]) {
+                return 0; // São diferentes
+            }
+        }
+    }
+    return 1; // São idênticas
+}
+
+
+void imprimirCartela(Cartela c, int numeroCartela) {
+    printf("\n=============================\n");
+    printf("        CARTELA %02d          \n", numeroCartela);
+    printf("=============================\n");
+    printf("  B    I    N    G    O  \n");
+    printf("-----------------------------\n");
+
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            if (i == 2 && j == COLUNA_N) {
+                printf("  X  "); 
+            } else {
+                printf(" %02d  ", c.numeros[i][j]);
+            }
+        }
+        printf("\n");
+    }
+    printf("=============================\n");
+}
